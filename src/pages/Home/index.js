@@ -5,8 +5,10 @@ import Footer from '../../components/Footer';
 
 import {
     BoxHome,
-    FoodList,
+    Button
 } from './styles';
+
+import Imagem from '../../assets/imagem_tela_inicial.svg';
 
 function Home () {
     return (
@@ -14,27 +16,26 @@ function Home () {
             <Header />
             <BoxHome>
                 <div className="container">
-                    <h1>Cadê a comida?</h1>
-                    <h3>A plataforma que conecta você ao restaurante mais próximo</h3>
+                    <div className="row">
+                        <div className="col">
+                            <h1>Cadê a comida?</h1>
+                            <h3>A plataforma que conecta você ao restaurante mais próximo</h3>
 
-                    <h2>O que você pretende comer?</h2>
-                    <FoodList>
-                        <li>
-                            Comida Caseira
-                        </li>
-                        <li>
-                            Comida Japonesa
-                        </li>
-                        <li>
-                            Carnes
-                        </li>
-                        <li>
-                            Pizza
-                        </li>
-                        <li>
-                            Acarajé
-                        </li>
-                    </FoodList>
+                            <div className="options">
+                                <Button to='search-place'>
+                                    <span>Buscar local para comer</span>
+                                </Button>
+
+                                <Button to='register-place'>
+                                    <span>Cadastrar estabelecimento</span>
+                                </Button>
+                            </div>
+                        </div>
+
+                        <div className="col">
+                            <img src={Imagem} alt="Cadê a comida?"/>
+                        </div>
+                    </div>
                 </div>
             </BoxHome>
             <Footer />

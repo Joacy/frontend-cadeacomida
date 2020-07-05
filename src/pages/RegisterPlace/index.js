@@ -15,45 +15,46 @@ function RegisterPlace () {
     const [items, setItems] = useState([]);
 
     async function getItems () {
-        // try {
-        //     const response = await api.get('items');
+        try {
+            const response = await api.get('items');
 
-        //     setItems(response.data);
-        // } catch (error) {
-        //     console.log(error);
-        // }
-        setItems([
-            {
-                id: 1,
-                title: "Comida Caseira",
-                image_url: "https://via.placeholder.com/80"
-            },
-            {
-                id: 2,
-                title: "Comida Japonesa",
-                image_url: "https://via.placeholder.com/80"
-            },
-            {
-                id: 3,
-                title: "Carnes",
-                image_url: "https://via.placeholder.com/80"
-            },
-            {
-                id: 4,
-                title: "Pizza",
-                image_url: "https://via.placeholder.com/80"
-            },
-            {
-                id: 5,
-                title: "Açaí",
-                image_url: "https://via.placeholder.com/80"
-            },
-            {
-                id: 6,
-                title: "Acarajé",
-                image_url: "https://via.placeholder.com/80"
-            }
-        ])
+            setItems(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+        // setItems([
+        //     {
+        //         id: 1,
+        //         title: "Comida Caseira",
+        //         image_url: "https://via.placeholder.com/80"
+        //     },
+        //     {
+        //         id: 2,
+        //         title: "Comida Japonesa",
+        //         image_url: "https://via.placeholder.com/80"
+        //     },
+        //     {
+        //         id: 3,
+        //         title: "Carnes",
+        //         image_url: "https://via.placeholder.com/80"
+        //     },
+        //     {
+        //         id: 4,
+        //         title: "Pizza",
+        //         image_url: "https://via.placeholder.com/80"
+        //     },
+        //     {
+        //         id: 5,
+        //         title: "Açaí",
+        //         image_url: "https://via.placeholder.com/80"
+        //     },
+        //     {
+        //         id: 6,
+        //         title: "Acarajé",
+        //         image_url: "https://via.placeholder.com/80"
+        //     }
+        // ])
     };
 
     useEffect(() => {
@@ -64,7 +65,7 @@ function RegisterPlace () {
 
     async function getUFs () {
         try {
-            const response = await axios.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados");
+            const response = await axios.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome");
 
             const initials = response.data.map(uf => uf.sigla);
 
@@ -110,6 +111,7 @@ function RegisterPlace () {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
+    const [description, setDescription] = useState('');
 
     const [selectedImage, setSelectedImage] = useState();
 
@@ -161,6 +163,7 @@ function RegisterPlace () {
         data.append('name', name);
         data.append('email', email);
         data.append('whatsapp', whatsapp);
+        data.append('description', description);
         data.append('latitude', String(latitude));
         data.append('longitude', String(longitude));
         data.append('city', city);
@@ -230,6 +233,18 @@ function RegisterPlace () {
                                     required
                                 />
                             </div>
+                        </div>
+
+                        <div className="field">
+                            <label htmlFor="description">Descrição</label>
+                            <textarea
+                                name="description"
+                                id="description"
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}
+                                required
+                                rows="5"
+                            ></textarea>
                         </div>
                     </fieldset>
 
